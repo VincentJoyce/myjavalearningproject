@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--提供方信息-->
+    <dubbo:application name="dubbo-client" owner="lhq"/>
+
+    <!--注册中心，file指的是将服务端注册的地址写到客户端本地-->
+    <dubbo:registry address="zookeeper://192.168.246.132:2181" file="G:/dubbo-server"/>
+
+    <!--声明协议-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <!--check：服务没启动，不报错-->
+    <dubbo:reference id="helloService" interface="cn.lhq.IHello" protocol="dubbo" check="false"/>
+
+    <!--<dubbo:reference id="helloService" interface="cn.lhq.IHello"
+                     url="dubbo://192.168.246.1:20880/cn.lhq.IHello"/>-->
+
+</beans>
